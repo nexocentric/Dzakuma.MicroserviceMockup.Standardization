@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Dodzidenu Y. Dzakuma</authors>
+    <owners>Dodzidenu Y. Dzakuma</owners>
+    <licenseUrl>https://github.com/nexocentric/Dzakuma.MicroserviceMockup.Standardization/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nexocentric/Dzakuma.MicroserviceMockup.Standardization</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>This is a mock project I made for use in demonstrating component based development and microservices on an OS.</summary>
+    <description>This is a standard library that is used for combining with other projects.</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>microservice test automation mockup</tags>
+  </metadata>
+</package>
