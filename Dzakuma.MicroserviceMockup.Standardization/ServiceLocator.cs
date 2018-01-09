@@ -28,7 +28,12 @@ namespace Dzakuma.MicroserviceMockup.Standardization
 				}
 			}
 		}
-		public string ServicePath => _servicePath;
+
+		public string ServicePath
+		{
+			get { return _servicePath; }
+			private set { _servicePath = value; }
+		}
 
 		public ServiceLocator(string startingDirectory, string executableNamePattern)
 		{
@@ -40,6 +45,78 @@ namespace Dzakuma.MicroserviceMockup.Standardization
 		{
 			int servicesFound = 0;
 			if (!Directory.Exists(_startingDirectory)){ return servicesFound; }
+
+			using (var posh = PowerShell.Create())
+			{
+				posh.AddScript(
+					"Get-ChildItem -Path '" + _startingDirectory + "' -File -Filter \"*.exe\" -Recurse | " +
+					"Where-Object { $_.FullName -like \"*" + _executableNamePattern + "*\" } | " +
+					"ForEach-Object { $_.FullName }\r\n"
+				);
+
+				foreach (var response in posh.Invoke())
+				{
+					if (response == null) { continue; }
+					servicesFound++;
+					_servicePath = response.BaseObject.ToString();
+				}
+			}
+
+			return servicesFound;
+		}
+
+		public int SomethingHere()
+		{
+			int servicesFound = 0;
+			if (!Directory.Exists(_startingDirectory)) { return servicesFound; }
+
+			using (var posh = PowerShell.Create())
+			{
+				posh.AddScript(
+					"Get-ChildItem -Path '" + _startingDirectory + "' -File -Filter \"*.exe\" -Recurse | " +
+					"Where-Object { $_.FullName -like \"*" + _executableNamePattern + "*\" } | " +
+					"ForEach-Object { $_.FullName }\r\n"
+				);
+
+				foreach (var response in posh.Invoke())
+				{
+					if (response == null) { continue; }
+					servicesFound++;
+					_servicePath = response.BaseObject.ToString();
+				}
+			}
+
+			return servicesFound;
+		}
+
+		public int LocateService1()
+		{
+			int servicesFound = 30;
+			if (!Directory.Exists(_startingDirectory)) { return servicesFound; }
+
+			using (var posh = PowerShell.Create())
+			{
+				posh.AddScript(
+					"Get-ChildItem -Path '" + _startingDirectory + "' -File -Filter \"*.exe\" -Recurse | " +
+					"Where-Object { $_.FullName -like \"*" + _executableNamePattern + "*\" } | " +
+					"ForEach-Object { $_.FullName }\r\n"
+				);
+
+				foreach (var response in posh.Invoke())
+				{
+					if (response == null) { continue; }
+					servicesFound++;
+					_servicePath = response.BaseObject.ToString();
+				}
+			}
+
+			return servicesFound;
+		}
+
+		public int LocateService2()
+		{
+			int servicesFound = -1;
+			if (!Directory.Exists(_startingDirectory)) { return servicesFound; }
 
 			using (var posh = PowerShell.Create())
 			{
